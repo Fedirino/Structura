@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // User profiles — only the owner can read/write their own doc
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Base layouts — owner or anyone in the sharedWith list
+    match /layouts/{layoutId} {
+      allow read: if request.auth != null && (
+        resource.data.ownerId == request.auth.uid ||
+        request.auth.uid in resource.data.sharedWith
+      );
+
+      allow create: if request.auth != null &&
+        request.resource.data.ownerId == request.auth.uid;
+
+      allow update, delete: if request.auth != null &&
+        resource.data.ownerId == request.auth.uid;
+    }
+
+    // Default deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structura -- Dune Awakening Base Builder</title>
+  <meta name="description" content="Plan your Dune: Awakening base. Power calculator, fuel costs, and base layout planner.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <h1 class="logo"><span class="logo-icon">&#x2B21;</span> Structura</h1>
+      <p class="tagline">Dune Awakening Base Builder</p>
+    </div>
+    <nav class="main-nav">
+      <a href="#calculator" class="nav-link active" data-view="calculator">Power Calculator</a>
+      <a href="#layout" class="nav-link" data-view="layout">Layout Planner</a>
+    </nav>
+    <div class="auth-area">
+      <button id="sign-in-btn" class="auth-btn">Sign in with Google</button>
+      <div id="auth-info" class="auth-info" style="display:none;">
+        <img id="user-avatar" class="user-avatar" src="" alt="">
+        <span id="user-name" class="user-name"></span>
+        <button id="sign-out-btn" class="auth-btn small">Sign out</button>
+      </div>
+    </div>
+    <span class="version-badge" id="version-badge"></span>
+  </header>
+
+  <main id="app">
+    <!-- Power Calculator Section -->
+    <section id="calculator" class="calculator-section">
+      <div class="section-header">
+        <h2>Power Calculator</h2>
+        <p class="section-desc">Add generators and base buildings to calculate total power balance and fuel costs.</p>
+      </div>
+      <div class="calculator-layout">
+        <div class="panel generators-panel">
+          <h3 class="panel-title">Power Generation</h3>
+          <div id="generator-inputs"></div>
+          <div class="generator-totals" id="generator-totals">
+            <div class="total-row highlight">
+              <span>Total Power Output</span>
+              <span id="total-power-output">0 V</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel consumers-panel">
+          <h3 class="panel-title">Power Consumption</h3>
+          <div class="consumer-category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="Water">Water</button>
+            <button class="filter-btn" data-category="Crafting">Crafting</button>
+            <button class="filter-btn" data-category="Refining">Refining</button>
+            <button class="filter-btn" data-category="Utility">Utility</button>
+            <button class="filter-btn" data-category="Defense">Defense</button>
+          </div>
+          <div id="consumer-inputs"></div>
+          <div class="consumer-totals" id="consumer-totals">
+            <div class="total-row highlight">
+              <span>Total Power Draw</span>
+              <span id="total-power-draw">0 V</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel summary-panel">
+        <h3 class="panel-title">Summary</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="summary-label">Power Balance</span>
+            <span class="summary-value" id="power-balance">0 V</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Status</span>
+            <span class="summary-value" id="power-status">--</span>
+          </div>
+        </div>
+        <div class="fuel-cost-section">
+          <h4>Fuel Cost Over Time</h4>
+          <div class="duration-input">
+            <label for="duration-days">Duration (days):</label>
+            <input type="number" id="duration-days" value="7" min="1" max="365">
+          </div>
+          <div id="fuel-cost-breakdown"></div>
+        </div>
+      </div>
+      <p class="data-disclaimer">
+        Game data last verified: <strong>August 2025</strong>. Funcom patches frequently.
+        <a href="data/game-data.json" target="_blank">View raw data</a>.
+      </p>
+    </section>
+
+    <!-- Layout Planner Section -->
+    <section id="layout" class="layout-section" style="display:none;">
+      <div class="layout-toolbar">
+        <div class="layout-name-area">
+          <span class="layout-name" id="layout-name">Untitled</span>
+          <span class="layout-status" id="layout-status"></span>
+        </div>
+        <div class="layout-file-btns">
+          <button class="tool-btn" id="save-layout-btn" title="Save layout">Save</button>
+          <button class="tool-btn" id="save-as-layout-btn" title="Save as new">Save As</button>
+          <button class="tool-btn" id="load-layout-btn" title="Load layout">Load</button>
+        </div>
+        <div class="view-toggle">
+          <button class="view-btn active" id="view-2d-btn">2D</button>
+          <button class="view-btn" id="view-3d-btn">3D</button>
+        </div>
+        <p id="auth-prompt" class="auth-prompt">Sign in to save/load layouts</p>
+      </div>
+      <div class="layout-wrapper">
+        <aside class="layout-sidebar">
+          <div class="sidebar-section">
+            <h3 class="panel-title">Tools</h3>
+            <div class="tool-bar" id="layout-tools">
+              <button class="tool-btn active" data-tool="place" title="Place (click grid)">Place</button>
+              <button class="tool-btn" data-tool="erase" title="Erase (E)">Erase</button>
+              <button class="tool-btn" data-tool="center" title="Re-center grid (R)">Center</button>
+              <button class="tool-btn danger" data-tool="clear-layer" title="Clear this layer">Clear Layer</button>
+              <button class="tool-btn danger" data-tool="clear-all" title="Clear all layers">Clear All</button>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <h3 class="panel-title">Buildings</h3>
+            <div id="palette-filter" class="palette-filter"></div>
+            <div id="palette-items" class="palette-list"></div>
+          </div>
+          <div class="sidebar-section">
+            <h3 class="panel-title">Power Summary</h3>
+            <div class="layout-stats">
+              <div class="stat-row"><span class="stat-label">Buildings</span><span class="stat-value" id="layout-building-count">0</span></div>
+              <div class="stat-row"><span class="stat-label">Generation</span><span class="stat-value positive" id="layout-power-output">+0 V</span></div>
+              <div class="stat-row"><span class="stat-label">Draw</span><span class="stat-value negative" id="layout-power-draw">-0 V</span></div>
+              <div class="stat-row highlight"><span class="stat-label">Balance</span><span class="stat-value neutral" id="layout-power-balance">+0 V</span></div>
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <p class="layout-help"><strong>Controls:</strong> Left-click place/erase. Right/middle-drag pan. Scroll zoom. <strong>E</strong>=erase, <strong>R</strong>=center, <strong>Esc</strong>=deselect.</p>
+          </div>
+        </aside>
+        <div class="layout-main">
+          <div class="layer-bar">
+            <div id="layer-tabs" class="layer-tabs"></div>
+            <span class="grid-coords" id="grid-coords">--</span>
+          </div>
+          <div class="canvas-container">
+            <canvas id="layout-canvas"></canvas>
+          </div>
+          <div class="three-container" id="three-container" style="display:none;"></div>
+        </div>
+      </div>
+      <p class="data-disclaimer">Building footprints are approximate. <a href="data/game-data.json" target="_blank">View raw data</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Structura is a fan project. Not affiliated with Funcom or the Dune franchise.</p>
+  </footer>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- App scripts (order matters) -->
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+  <script src="layout-storage.js"></script>
+  <script src="three-preview.js"></script>
+  <script src="app.js"></script>
+  <script src="layout-planner.js"></script>
+</body>
+</html>

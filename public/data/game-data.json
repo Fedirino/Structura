@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "dataLastVerified": "2025-08-01",
+    "source": "Community wikis, Method.gg, DaOpa calculator.",
+    "notes": "Power in volts (V). Fuel per generator per hour. Grid sizes approximate."
+  },
+  "generators": [
+    {"id":"fuel_generator","name":"Fuel-Powered Generator","powerOutput":75,"fuelType":"Fuel Cell","fuelPerHour":1,"buildCost":{"Salvaged Metal":45},"placement":"indoor","tier":1,"gridW":1,"gridH":1,"color":"#d4922a","abbrev":"FG","notes":"Most efficient for solo/small groups."},
+    {"id":"wind_turbine_omni","name":"Wind Turbine (Omni)","powerOutput":150,"fuelType":"Low-grade Lubricant","fuelPerHour":1.125,"buildCost":{"Steel Ingot":60,"Silicone Block":20,"Calibrated Servok":10},"placement":"outdoor","tier":2,"gridW":2,"gridH":2,"color":"#4a9ebe","abbrev":"WO","notes":"Must be built outside your base."},
+    {"id":"wind_turbine_dir","name":"Wind Turbine (Dir)","powerOutput":350,"fuelType":"Industrial-grade Lubricant","fuelPerHour":0.625,"buildCost":{"Steel Ingot":120,"Silicone Block":40,"Spice Residue":20,"Calibrated Servok":20},"placement":"outdoor","tier":3,"gridW":2,"gridH":2,"color":"#2d6a85","abbrev":"WD","notes":"Must be built outside your base."},
+    {"id":"spice_generator","name":"Spice-Powered Generator","powerOutput":1000,"fuelType":"Spice-infused Fuel Cell","fuelPerHour":1,"buildCost":{"Spice Melange":270,"Plastanium Ingot":430},"placement":"indoor","tier":4,"gridW":2,"gridH":2,"color":"#e8a840","abbrev":"SG","notes":"Endgame. Very expensive."}
+  ],
+  "powerConsumers": [
+    {"id":"windtrap","name":"Windtrap","powerDraw":75,"category":"Water","gridW":2,"gridH":2,"color":"#5896a8","abbrev":"WT","notes":"45ml water/min."},
+    {"id":"large_windtrap","name":"Large Windtrap","powerDraw":150,"category":"Water","gridW":3,"gridH":3,"color":"#4a8090","abbrev":"LW","notes":"105ml water/min."},
+    {"id":"fabricator","name":"Fabricator","powerDraw":50,"category":"Crafting","gridW":1,"gridH":1,"color":"#8a7a5a","abbrev":"Fb","notes":"General crafting."},
+    {"id":"survival_fabricator","name":"Survival Fabricator","powerDraw":50,"category":"Crafting","gridW":1,"gridH":1,"color":"#7a8a5a","abbrev":"SF","notes":"Survival gear."},
+    {"id":"advanced_survival_fabricator","name":"Adv Survival Fab","powerDraw":75,"category":"Crafting","gridW":2,"gridH":1,"color":"#6a9a5a","abbrev":"AS","notes":"Advanced survival."},
+    {"id":"weapons_fabricator","name":"Weapons Fabricator","powerDraw":50,"category":"Crafting","gridW":1,"gridH":1,"color":"#9a6a5a","abbrev":"WF","notes":"Weapon crafting."},
+    {"id":"advanced_weapons_fabricator","name":"Adv Weapons Fab","powerDraw":75,"category":"Crafting","gridW":2,"gridH":1,"color":"#aa5a4a","abbrev":"AW","notes":"Advanced weapons."},
+    {"id":"garment_fabricator","name":"Garment Fabricator","powerDraw":50,"category":"Crafting","gridW":1,"gridH":1,"color":"#8a6a8a","abbrev":"GF","notes":"Armor/clothing."},
+    {"id":"advanced_garment_fabricator","name":"Adv Garment Fab","powerDraw":75,"category":"Crafting","gridW":2,"gridH":1,"color":"#9a5a9a","abbrev":"AG","notes":"Advanced armor."},
+    {"id":"vehicles_fabricator","name":"Vehicles Fabricator","powerDraw":50,"category":"Crafting","gridW":2,"gridH":1,"color":"#6a7a8a","abbrev":"VF","notes":"Vehicle crafting."},
+    {"id":"advanced_vehicle_fabricator","name":"Adv Vehicle Fab","powerDraw":75,"category":"Crafting","gridW":2,"gridH":2,"color":"#5a6a9a","abbrev":"AV","notes":"Advanced vehicles."},
+    {"id":"small_ore_refinery","name":"Small Ore Refinery","powerDraw":75,"category":"Refining","gridW":2,"gridH":1,"color":"#8a7060","abbrev":"SO","notes":"Copper, iron, steel."},
+    {"id":"medium_ore_refinery","name":"Med Ore Refinery","powerDraw":150,"category":"Refining","gridW":2,"gridH":2,"color":"#9a6050","abbrev":"MO","notes":"Faster refining."},
+    {"id":"large_ore_refinery","name":"Large Ore Refinery","powerDraw":225,"category":"Refining","gridW":3,"gridH":2,"color":"#aa5040","abbrev":"LO","notes":"Fastest refining."},
+    {"id":"small_chemical_refinery","name":"Small Chem Refinery","powerDraw":75,"category":"Refining","gridW":2,"gridH":1,"color":"#607a6a","abbrev":"CR","notes":"Fuel cells, lubricants."},
+    {"id":"medium_chemical_refinery","name":"Med Chem Refinery","powerDraw":150,"category":"Refining","gridW":2,"gridH":2,"color":"#508a5a","abbrev":"MC","notes":"Faster chemicals."},
+    {"id":"spice_refinery","name":"Spice Refinery","powerDraw":75,"category":"Refining","gridW":2,"gridH":1,"color":"#a08040","abbrev":"SR","notes":"Spice Sand to Melange."},
+    {"id":"medium_spice_refinery","name":"Med Spice Refinery","powerDraw":150,"category":"Refining","gridW":2,"gridH":2,"color":"#b07030","abbrev":"MS","notes":"Faster spice refining."},
+    {"id":"large_spice_refinery","name":"Large Spice Refinery","powerDraw":225,"category":"Refining","gridW":3,"gridH":2,"color":"#c06020","abbrev":"LS","notes":"Fastest spice refining."},
+    {"id":"repair_station","name":"Repair Station","powerDraw":50,"category":"Utility","gridW":1,"gridH":1,"color":"#6a8a6a","abbrev":"RS","notes":"Repairs equipment."},
+    {"id":"recycler","name":"Recycler","powerDraw":50,"category":"Utility","gridW":1,"gridH":1,"color":"#5a7a5a","abbrev":"Rc","notes":"Breaks down items."},
+    {"id":"blood_purifier","name":"Blood Purifier","powerDraw":50,"category":"Water","gridW":1,"gridH":1,"color":"#8a4a4a","abbrev":"BP","notes":"Blood to water."},
+    {"id":"improved_blood_purifier","name":"Impr Blood Purifier","powerDraw":75,"category":"Water","gridW":2,"gridH":1,"color":"#9a3a3a","abbrev":"IB","notes":"Faster purification."},
+    {"id":"pentashield_h","name":"Pentashield (H)","powerDraw":25,"category":"Defense","gridW":1,"gridH":1,"color":"#5070a0","abbrev":"PH","notes":"Horizontal shield."},
+    {"id":"pentashield_v","name":"Pentashield (V)","powerDraw":25,"category":"Defense","gridW":1,"gridH":1,"color":"#4060a0","abbrev":"PV","notes":"Vertical shield."}
+  ],
+  "structural": [
+    {"id":"foundation","name":"Foundation","gridW":1,"gridH":1,"color":"#5c4a35","abbrev":"Fn","category":"Structure"},
+    {"id":"wall","name":"Wall","gridW":1,"gridH":1,"color":"#6d5f4f","abbrev":"Wl","category":"Structure"},
+    {"id":"door","name":"Door","gridW":1,"gridH":1,"color":"#7a6a55","abbrev":"Dr","category":"Structure"},
+    {"id":"stairs","name":"Stairs","gridW":1,"gridH":2,"color":"#8a7a60","abbrev":"St","category":"Structure"},
+    {"id":"ramp","name":"Ramp","gridW":1,"gridH":2,"color":"#8a7a60","abbrev":"Rm","category":"Structure"},
+    {"id":"chest","name":"Chest","gridW":1,"gridH":1,"color":"#7a6a50","abbrev":"Ch","category":"Storage"},
+    {"id":"small_storage","name":"Small Storage","gridW":1,"gridH":1,"color":"#6a5a40","abbrev":"Ss","category":"Storage"},
+    {"id":"storage_container","name":"Storage Container","gridW":1,"gridH":1,"color":"#5a4a30","abbrev":"Sc","category":"Storage"},
+    {"id":"medium_storage","name":"Medium Storage","gridW":2,"gridH":1,"color":"#4a3a20","abbrev":"Md","category":"Storage"},
+    {"id":"medium_water_cistern","name":"Med Water Cistern","gridW":2,"gridH":1,"color":"#4a6a8a","abbrev":"WC","category":"Storage"},
+    {"id":"large_water_cistern","name":"Large Water Cistern","gridW":2,"gridH":2,"color":"#3a5a7a","abbrev":"LC","category":"Storage"}
+  ]
+}
